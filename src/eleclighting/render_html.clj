@@ -460,7 +460,7 @@
         (num-cell (str registry/defect-rate-min-percent " .. " registry/defect-rate-max-percent " %"))
         "a batch cannot reject more than 100 % of its own output")
    (row (code "phase/default-phase") (num-cell phase/default-phase)
-        (str "the phase this run used unless a scenario step overrode it"))])
+        "the phase this run used unless a scenario step overrode it")])
 
 (defn- ledger-row [{:keys [t op subject disposition basis violations confidence phase-reason phase]}]
   (row (case t
