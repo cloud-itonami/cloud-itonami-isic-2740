@@ -2469,7 +2469,7 @@ img,svg { max-width: 100%; height: auto; }</style></head><body>
   <h1>Manufacture of electric lighting equipment (ISIC 2740) — Operator Console</h1>
 </header>
 <p><span class="badge">read-only sample</span> <span class="badge">governor-gated</span> <span class="badge">propose-only · never actuates equipment</span> <span class="badge">never issues a UL/CE mark</span></p>
-<p class="subtitle">Generated at build time by <code>eleclighting.render-html</code> (<code>clojure -M:dev:render-html</code>) by actually running the <code>eleclighting.operation</code> langgraph actor — advisor ⊣ <strong>Electric Lighting Plant Operations Governor</strong> ⊣ phase gate ⊣ store. Every value below is read back out of the store, the append-only ledger, or the governor/phase/registry vars after the run. Nothing here is hand-written.</p>
+<p class="subtitle">Generated at build time by <code>eleclighting.render-html</code> (<code>kbb -M:dev:render-html</code>) by actually running the <code>eleclighting.operation</code> langgraph actor — advisor ⊣ <strong>Electric Lighting Plant Operations Governor</strong> ⊣ phase gate ⊣ store. Every value below is read back out of the store, the append-only ledger, or the governor/phase/registry vars after the run. Nothing here is hand-written.</p>
 <main>
   <section class="card">
     <h2>この run で何が起きたか — dispositions</h2>
@@ -2647,7 +2647,7 @@ img,svg { max-width: 100%; height: auto; }</style></head><body>
   </section>
 </main>
 <footer>
-  <p>ISIC Rev.5 2740 · <code>cloud-itonami-isic-2740</code> · AGPL-3.0-or-later. Deterministic build-time artefact: no timestamps, no randomness, no network. Regenerate with <code>clojure -M:dev:render-html</code>.</p>
+  <p>ISIC Rev.5 2740 · <code>cloud-itonami-isic-2740</code> · AGPL-3.0-or-later. Deterministic build-time artefact: no timestamps, no randomness, no network. Regenerate with <code>kbb -M:dev:render-html</code>.</p>
   <p>What this actor never does: actuate assembly or test-bench equipment, dispatch a real freight carrier, or issue an electric-lighting-equipment safety-certification mark (UL/CE) — the last two of which are permanently blocked by the governor with no human override.</p>
 </footer>
 </body></html>
