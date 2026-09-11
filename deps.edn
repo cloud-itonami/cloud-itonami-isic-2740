@@ -5,7 +5,7 @@
  ;; standalone (forkable outside the workspace); the :local/root paths
  ;; only resolve inside the monorepo checkout -- a standalone fork
  ;; should override them with git coordinates. langchain is pinned here
- ;; directly (not only under :dev) so a bare `clojure -M:test` works
+ ;; directly (not only under :dev) so a bare `kbb -M:test` works
  ;; offline inside the monorepo checkout without depending on
  ;; langgraph's own transitive git/sha pin being fetchable.
  ;;
@@ -16,7 +16,7 @@
  ;; -- its transitive kotoba-lang/html + kotoba-lang/css are git pins for
  ;; the same reason). It is a build-time-only dependency: nothing under
  ;; the actor stack (advisor/governor/operation/phase/registry/store)
- ;; requires it, so `clojure -M:test` never loads it.
+ ;; requires it, so `kbb -M:test` never loads it.
  :deps {
         ;; kotoba.lang.text, not clojure.string. Pinned as an explicit floor:
         ;; tools.deps takes the NEWEST sha it is shown, so without a floor here
@@ -36,9 +36,9 @@
   :dev {:override-deps
         {io.github.kotoba-lang/langchain
          {:local/root "../../kotoba-lang/langchain"}}}
-  ;; clojure -M:dev:run  -> drive the demo through one OperationActor
+  ;; kbb -M:dev:run  -> drive the demo through one OperationActor
   :run {:main-opts ["-m" "eleclighting.sim"]}
-  ;; clojure -M:dev:render-html -> drive the REAL actor stack and write
+  ;; kbb -M:dev:render-html -> drive the REAL actor stack and write
   ;; docs/samples/operator-console.html from its actual output.
   :render-html {:main-opts ["-m" "eleclighting.render-html"]}
   :test {:extra-paths ["test"]

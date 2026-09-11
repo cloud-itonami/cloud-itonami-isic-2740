@@ -2,7 +2,7 @@
   "Build-time HTML renderer for `docs/samples/operator-console.html`.
 
   Closes flagship checklist item 2: this repo had a demo DRIVER
-  (`eleclighting.sim`, `clojure -M:dev:run`) but no rendered page. This
+  (`eleclighting.sim`, `kbb -M:dev:run`) but no rendered page. This
   namespace drives the REAL actor stack -- `eleclighting.operation`
   (langgraph StateGraph) -> `eleclighting.advisor` -> `eleclighting.governor`
   -> `eleclighting.phase` -> `eleclighting.store` -- and renders the
@@ -26,7 +26,7 @@
   HARD governor hold. A console that shows only green rows would be
   advertising a governor that was never exercised.
 
-  Usage: `clojure -M:dev:render-html [out-file]`
+  Usage: `kbb -M:dev:render-html [out-file]`
   (default `docs/samples/operator-console.html`)."
   (:require [jp-go-dds.skin]
             [kotoba.lang.text :as str]
@@ -597,7 +597,7 @@
      "<span class=\"badge\">propose-only · never actuates equipment</span> "
      "<span class=\"badge\">never issues a UL/CE mark</span></p>\n"
      "<p class=\"subtitle\">Generated at build time by <code>eleclighting.render-html</code> "
-     "(<code>clojure -M:dev:render-html</code>) by actually running the "
+     "(<code>kbb -M:dev:render-html</code>) by actually running the "
      "<code>eleclighting.operation</code> langgraph actor — advisor ⊣ "
      "<strong>Electric Lighting Plant Operations Governor</strong> ⊣ phase gate ⊣ store. "
      "Every value below is read back out of the store, the append-only ledger, or the "
@@ -705,7 +705,7 @@
      "<footer>\n"
      "  <p>ISIC Rev.5 2740 · <code>cloud-itonami-isic-2740</code> · AGPL-3.0-or-later. "
      "Deterministic build-time artefact: no timestamps, no randomness, no network. "
-     "Regenerate with <code>clojure -M:dev:render-html</code>.</p>\n"
+     "Regenerate with <code>kbb -M:dev:render-html</code>.</p>\n"
      "  <p>What this actor never does: actuate assembly or test-bench equipment, dispatch a real "
      "freight carrier, or issue an electric-lighting-equipment safety-certification mark "
      "(UL/CE) — the last two of which are permanently blocked by the governor with no "
