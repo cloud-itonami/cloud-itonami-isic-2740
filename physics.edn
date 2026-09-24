@@ -1,0 +1,33 @@
+;; What this vertical's robot physically does, declared for
+;; kotoba.robotics.process (kotoba-lang/robotics). `kbb -M:dev:physics` runs it.
+;;
+;; README: the ISIC 2740 plant assembles LED lamps, luminaires, drivers and
+;; street-light fixtures and tests them (photometric, hipot). The robots'
+;; physical work: running the luminaire's thermal soak before the photometric
+;; reading (the LED board temperature decides whether the reading is valid
+;; and whether the design is inside the LED's rating), and mounting the
+;; luminaire on the goniophotometer.
+;;
+;; Every number without a cited source is marked `estimate` in its :basis.
+{:physics/schema "itonami.physical-ai.spec.v1"
+ :repo "cloud-itonami/cloud-itonami-isic-2740"
+ :cases
+ [{:id :led-board-thermal-soak
+   :kind :thermal
+   :procedure "a 5 mm die-cast aluminium luminaire body carries the LED board on its inner face; LED heat is spread through the body (volumetric source) and leaves by natural convection + radiation from the outer face to 25 C; the board side is adiabatic"
+   :params {:thickness-m 0.005 :conductivity-w-mk 96.0 :density-kg-m3 2700.0 :specific-heat-j-kgk 900.0
+            :t0-c 25.0 :t-hot-c 25.0 :h-front-w-m2k 20.0 :h-back-w-m2k 0.0
+            :threshold-c 85.0 :duration-s 5400.0 :nodes 3}
+   :sweep {:param :q-gen-w-m3 :values [80000.0 120000.0 160000.0 200000.0 260000.0]}
+   :quantity :peak-back-c
+   :limit {:max 85.0 :basis "estimate: LED board case-temperature rating typical of mid-power LED datasheets; the outer-face h of 20 W/m2K (natural convection + radiation) is an estimate"}
+   :boundary {:lo 40000.0 :hi 400000.0}}
+  {:id :luminaire-onto-goniophotometer
+   :kind :manipulator
+   :procedure "arm lifts a luminaire (downlight to street-light head) from the soak rack onto the goniophotometer mount"
+   :params {:l1-m 0.60 :l2-m 0.55 :m1-kg 8.0 :m2-kg 5.0
+            :from [0.70 0.10] :to [0.30 0.75] :duration-s 2.5 :steps 400}
+   :sweep {:param :payload-kg :values [0.5 2.0 5.0 9.0 14.0]}
+   :quantity :peak-tau1-nm
+   :limit {:max 180.0 :basis "estimate: continuous shoulder torque of a ~15 kg-class industrial arm"}
+   :boundary {:lo 0.1 :hi 60.0}}]}
